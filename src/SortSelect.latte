@@ -1,0 +1,6 @@
+<div>
+    <div class="selected" n:foreach="$activeValue as $key=>$item">{$key}</div>
+    <div class="options">
+        <a n:foreach="$values as $key=>$item" n:if="!$item['active']" href="{plink $item['route'] (expand) $item['parameters']}">{$key}</a>
+    </div>
+</div>
