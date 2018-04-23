@@ -21,6 +21,8 @@ class HtmlSelect extends Control implements ITemplatePath
     /** @var array */
     private $parameter;
 
+    private $active;
+
 
     /**
      * HtmlSelect constructor.
@@ -61,6 +63,17 @@ class HtmlSelect extends Control implements ITemplatePath
 
 
     /**
+     * Set active.
+     *
+     * @param $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+
+    /**
      * Add link.
      *
      * @param string $option
@@ -85,6 +98,10 @@ class HtmlSelect extends Control implements ITemplatePath
             $row['active'] = false;
             if (isset($row['parameters'][$this->parameter['name']])) {
                 $row['active'] = ($row['parameters'][$this->parameter['name']] == $value);
+            }
+
+            if ($this->active) {
+                $row['active'] = ($row['parameters'][$this->parameter['name']] == $this->active);
             }
             return $row;
         }, $this->values);
