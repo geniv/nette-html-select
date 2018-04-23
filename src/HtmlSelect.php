@@ -20,7 +20,7 @@ class HtmlSelect extends Control implements ITemplatePath
     private $values;
     /** @var array */
     private $parameter;
-
+    /** @var mixed */
     private $active;
 
 
@@ -63,11 +63,11 @@ class HtmlSelect extends Control implements ITemplatePath
 
 
     /**
-     * Set active.
+     * Set active value.
      *
      * @param $active
      */
-    public function setActive($active)
+    public function setActiveValue($active)
     {
         $this->active = $active;
     }
@@ -76,13 +76,17 @@ class HtmlSelect extends Control implements ITemplatePath
     /**
      * Add link.
      *
-     * @param string $option
+     * @param        $option
      * @param string $route
      * @param array  $parameters
      */
-    public function addLink(string $option, string $route, array $parameters)
+    public function addLink($option, string $route, array $parameters)
     {
-        $this->values[$option] = ['route' => $route, 'parameters' => $parameters];
+        $this->values[$option] = [
+            'option'     => $option,
+            'route'      => $route,
+            'parameters' => $parameters,
+        ];
     }
 
 
@@ -98,10 +102,8 @@ class HtmlSelect extends Control implements ITemplatePath
             $row['active'] = false;
             if (isset($row['parameters'][$this->parameter['name']])) {
                 $row['active'] = ($row['parameters'][$this->parameter['name']] == $value);
-            }
-
-            if ($this->active) {
-                $row['active'] = ($row['parameters'][$this->parameter['name']] == $this->active);
+            } else {
+                $row['active'] = in_array($this->active, $row['parameters']);
             }
             return $row;
         }, $this->values);
