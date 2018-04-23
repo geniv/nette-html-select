@@ -1,9 +1,9 @@
 {
-  "name": "geniv/nette-sort-select",
-  "description": "Sort select component for Nette Framework",
+  "name": "geniv/nette-html-select",
+  "description": "Html select component for Nette Framework",
   "keywords": [
     "nette",
-    "sort",
+    "html",
     "select",
     "geniv"
   ],

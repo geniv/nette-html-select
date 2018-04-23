@@ -1,15 +1,15 @@
-Sort select
+Html select
 ===========
 
 Installation
 ------------
 
 ```sh
-$ composer require geniv/nette-sort-select
+$ composer require geniv/nette-html-select
 ```
 or
 ```json
-"geniv/nette-sort-select": ">=1.0.0"
+"geniv/nette-html-select": ">=1.0.0"
 ```
 
 require:
@@ -25,22 +25,22 @@ Include in application
 neon configure services:
 ```neon
 services:
-    - SortSelect
+    - HtmlSelect
 ```
 
 presenter usage:
 ```php
-protected function createComponentSortSelect(SortSelect $sortSelect): SortSelect
+protected function createComponentHtmlSelect(HtmlSelect $htmlSelect): HtmlSelect
 {
-    $sortSelect->setTemplatePath(__DIR__ . '/templates/sortSelect.latte');
-    $sortSelect->setParameter('order', 'asc');
-    $sortSelect->addLink('Abecedně A - Z', 'Sort!', ['order' => 'asc']);
-    $sortSelect->addLink('Abecedně Z - A', 'Sort!', ['order' => 'desc']);
-    return $sortSelect;
+    $htmlSelect->setTemplatePath(__DIR__ . '/templates/htmlSelect.latte');
+    $htmlSelect->setParameter('order', 'asc');
+    $htmlSelect->addLink('Abecedně A - Z', 'Sort!', ['order' => 'asc']);
+    $htmlSelect->addLink('Abecedně Z - A', 'Sort!', ['order' => 'desc']);
+    return $htmlSelect;
 }
 ```
 
 latte usage:
 ```latte
-{control sortSelect}
+{control htmlSelect}
 ```

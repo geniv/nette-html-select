@@ -6,11 +6,11 @@ use Nette\Localization\ITranslator;
 
 
 /**
- * Class SortSelect
+ * Class HtmlSelect
  *
  * @author  geniv
  */
-class SortSelect extends Control implements ITemplatePath
+class HtmlSelect extends Control implements ITemplatePath
 {
     /** @var ITranslator */
     private $translator;
@@ -21,9 +21,11 @@ class SortSelect extends Control implements ITemplatePath
     /** @var array */
     private $parameter;
 
+    private $active;
+
 
     /**
-     * SortSelect constructor.
+     * HtmlSelect constructor.
      *
      * @param ITranslator|null $translator
      */
@@ -33,7 +35,7 @@ class SortSelect extends Control implements ITemplatePath
 
         $this->translator = $translator;
 
-        $this->templatePath = __DIR__ . '/SortSelect.latte'; // set path
+        $this->templatePath = __DIR__ . '/HtmlSelect.latte'; // set path
     }
 
 
@@ -57,6 +59,17 @@ class SortSelect extends Control implements ITemplatePath
     public function setParameter(string $name, string $default = null)
     {
         $this->parameter = ['name' => $name, 'default' => $default];
+    }
+
+
+    /**
+     * Set active.
+     *
+     * @param $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
     }
 
 
@@ -85,6 +98,10 @@ class SortSelect extends Control implements ITemplatePath
             $row['active'] = false;
             if (isset($row['parameters'][$this->parameter['name']])) {
                 $row['active'] = ($row['parameters'][$this->parameter['name']] == $value);
+            }
+
+            if ($this->active) {
+                $row['active'] = ($row['parameters'][$this->parameter['name']] == $this->active);
             }
             return $row;
         }, $this->values);
