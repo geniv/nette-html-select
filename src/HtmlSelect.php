@@ -6,11 +6,11 @@ use Nette\Localization\ITranslator;
 
 
 /**
- * Class SortSelect
+ * Class HtmlSelect
  *
  * @author  geniv
  */
-class SortSelect extends Control implements ITemplatePath
+class HtmlSelect extends Control implements ITemplatePath
 {
     /** @var ITranslator */
     private $translator;
@@ -23,7 +23,7 @@ class SortSelect extends Control implements ITemplatePath
 
 
     /**
-     * SortSelect constructor.
+     * HtmlSelect constructor.
      *
      * @param ITranslator|null $translator
      */
@@ -33,7 +33,7 @@ class SortSelect extends Control implements ITemplatePath
 
         $this->translator = $translator;
 
-        $this->templatePath = __DIR__ . '/SortSelect.latte'; // set path
+        $this->templatePath = __DIR__ . '/HtmlSelect.latte'; // set path
     }
 
 
