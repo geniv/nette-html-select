@@ -33,6 +33,13 @@ presenter usage:
 protected function createComponentHtmlSelect(HtmlSelect $htmlSelect): HtmlSelect
 {
     $htmlSelect->setTemplatePath(__DIR__ . '/templates/htmlSelect.latte');
+
+    // add all in one
+    $htmlSelect->setRoute('SwitchFkId!');
+    $htmlSelect->setPrompt('-- žádný výběr --');
+    $htmlSelect->setItems([1 => 'a', 2 => 'b']);
+
+    // add step by step
     $htmlSelect->setParameter('order', 'asc');
     $htmlSelect->addLink('Abecedně A - Z', 'Sort!', ['order' => 'asc']);
     $htmlSelect->addLink('Abecedně Z - A', 'Sort!', ['order' => 'desc']);
