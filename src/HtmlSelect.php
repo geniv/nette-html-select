@@ -17,7 +17,7 @@ class HtmlSelect extends Control implements ITemplatePath
     /** @var string */
     private $templatePath;
     /** @var array */
-    private $values;
+    private $values = [];
     /** @var array */
     private $parameter;
     /** @var mixed */
