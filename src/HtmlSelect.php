@@ -81,11 +81,17 @@ class HtmlSelect extends Control implements ITemplatePath
      * Set items.
      *
      * @param array $items
+     * @param bool  $useKeys
      * @throws Exception
      */
-    public function setItems(array $items = [])
+    public function setItems(array $items = [], $useKeys = true)
     {
         $this->checkRoute();
+
+        // use same key like value
+        if (!$useKeys) {
+            $items = array_combine($items, $items);
+        }
 
         $newItems = array_map(function ($row) use ($items) {
             return [
@@ -94,7 +100,22 @@ class HtmlSelect extends Control implements ITemplatePath
                 'parameters' => [$row],
             ];
         }, array_flip($items));
-        $this->values = array_merge($this->values, $newItems);
+        $this->values += $newItems;
+    }
+
+
+    /**
+     * Add item.
+     *
+     * @param $option
+     * @param $parameter
+     * @throws Exception
+     */
+    public function addItem($option, $parameter)
+    {
+        $this->checkRoute();
+
+        $this->addLink($option, $this->route, [$parameter]);
     }
 
 

@@ -37,7 +37,9 @@ protected function createComponentHtmlSelect(HtmlSelect $htmlSelect): HtmlSelect
     // add all in one
     $htmlSelect->setRoute('SwitchFkId!');
     $htmlSelect->setPrompt('-- žádný výběr --');
+    $htmlSelect->addItem(3, 'c');
     $htmlSelect->setItems([1 => 'a', 2 => 'b']);
+    $htmlSelect->setItems([1 => 'a', 2 => 'b'], false);
 
     // add step by step
     $htmlSelect->setParameter('order', 'asc');
