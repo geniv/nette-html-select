@@ -24,6 +24,8 @@ class HtmlSelect extends Control implements ITemplatePath
     private $active;
     /** @var string */
     private $route;
+    /** @var array */
+    private $variableTemplate = [];
 
 
     /**
@@ -174,6 +176,18 @@ class HtmlSelect extends Control implements ITemplatePath
 
 
     /**
+     * Add variable template.
+     *
+     * @param string $name
+     * @param        $values
+     */
+    public function addVariableTemplate(string $name, $values)
+    {
+        $this->variableTemplate[$name] = $values;
+    }
+
+
+    /**
      * Render.
      */
     public function render()
@@ -190,6 +204,11 @@ class HtmlSelect extends Control implements ITemplatePath
             }
             return $row;
         }, $this->values);
+
+        // add user defined variable
+        foreach ($this->variableTemplate as $name => $value) {
+            $template->$name = $value;
+        }
 
         $template->activeValue = array_filter($values, function ($row) { return $row['active']; }); // select only one item
         $template->values = $values;
