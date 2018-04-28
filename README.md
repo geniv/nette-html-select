@@ -41,6 +41,8 @@ protected function createComponentHtmlSelect(HtmlSelect $htmlSelect): HtmlSelect
     $htmlSelect->setItems([1 => 'a', 2 => 'b']);
     $htmlSelect->setItems([1 => 'a', 2 => 'b'], false);
 
+    $htmlSelect->addVariableTemplate([1 => 'a']);
+
     // add step by step
     $htmlSelect->setParameter('order', 'asc');
     $htmlSelect->addLink('Abecedně A - Z', 'Sort!', ['order' => 'asc']);
