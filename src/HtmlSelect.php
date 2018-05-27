@@ -39,7 +39,7 @@ class HtmlSelect extends Control implements ITemplatePath
 
         $this->translator = $translator;
 
-        $this->templatePath = __DIR__ . '/HtmlSelect.latte'; // set path
+        $this->templatePath = __DIR__ . '/HtmlSelect.latte';    // set path
     }
 
 
@@ -197,7 +197,8 @@ class HtmlSelect extends Control implements ITemplatePath
         $values = array_map(function ($row) {
             $row['active'] = false;
             if ($this->parameter && isset($row['parameters'][$this->parameter['name']])) {
-                $value = $this->presenter->getParameter($this->parameter['name'], $this->parameter['default']);
+                // isset + not empty get value => value or default value
+                $value = ($this->presenter->getParameter($this->parameter['name'], $this->parameter['default']) ?: $this->parameter['default']);
                 $row['active'] = ($row['parameters'][$this->parameter['name']] == $value);
             } else {
                 $row['active'] = in_array($this->active, $row['parameters']);
