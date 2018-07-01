@@ -212,6 +212,7 @@ class HtmlSelect extends Control implements ITemplatePath
         }
 
         $template->activeValue = array_filter($values, function ($row) { return $row['active']; }); // select only one item
+        $template->activeKey = implode(array_keys($template->activeValue)); // get current key
         $template->values = $values;
 
         $template->setTranslator($this->translator);
