@@ -2,6 +2,7 @@
 
 use GeneralForm\ITemplatePath;
 use Nette\Application\UI\Control;
+use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Localization\ITranslator;
 
 
@@ -68,8 +69,8 @@ class HtmlSelect extends Control implements ITemplatePath
     /**
      * Check route.
      *
-     * @internal
      * @throws Exception
+     * @internal
      */
     private function checkRoute()
     {
@@ -95,14 +96,10 @@ class HtmlSelect extends Control implements ITemplatePath
             $items = array_combine($items, $items);
         }
 
-        $newItems = array_map(function ($row) use ($items) {
-            return [
-                'option'     => $items[$row],
-                'route'      => $this->route,
-                'parameters' => [$row],
-            ];
-        }, array_flip($items));
-        $this->values += $newItems;
+        // add items
+        foreach ($items as $index => $item) {
+            $this->addLink($item, $this->route, [$index]);
+        }
     }
 
 
@@ -192,6 +189,7 @@ class HtmlSelect extends Control implements ITemplatePath
      */
     public function render()
     {
+        /** @var Template $template */
         $template = $this->getTemplate();
 
         $values = array_map(function ($row) {
@@ -211,6 +209,7 @@ class HtmlSelect extends Control implements ITemplatePath
             $template->$name = $value;
         }
 
+        /** @var stdClass $template */
         $template->activeValue = array_filter($values, function ($row) { return $row['active']; }); // select only one item
         $template->activeKey = implode(array_keys($template->activeValue)); // get current key
         $template->values = $values;
