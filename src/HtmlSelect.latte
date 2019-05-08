@@ -8,9 +8,6 @@
 {*
 <div class="language-select">
     <a n:foreach="$values as $key=>$item" href="{plink $item['route'] (expand) $item['parameters']}" n:class="$item['active']?active, ajax">{$key}</a>
-
-    {dump $hasLocale[$activeValue[$activeKey]['parameters'][0]] ?? null}
-
     <div class="language-select-delete" n:ifset="$hasLocale[$activeValue[$activeKey]['parameters'][0]]">
         <a href="{plink DeleteSwitchFkId! $activeValue[$activeKey]['parameters'][0]}" n:confirm="$presenter->translator->translate('switch-fkid-delete-confirm', [$activeKey])">{_'switch-fkid-delete'}</a>
     </div>
