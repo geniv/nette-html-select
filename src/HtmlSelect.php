@@ -87,7 +87,7 @@ class HtmlSelect extends Control implements ITemplatePath
      * @param bool  $useKeys
      * @throws Exception
      */
-    public function setItems(array $items = [], $useKeys = true)
+    public function setItems(array $items = [], bool $useKeys = true)
     {
         $this->checkRoute();
 
