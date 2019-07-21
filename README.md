@@ -38,6 +38,7 @@ protected function createComponentHtmlSelect(HtmlSelect $htmlSelect): HtmlSelect
     // add all in one - strict internal check route for method: setRoute()
     $htmlSelect->setRoute('SwitchFkId!');
     $htmlSelect->setPrompt('-- žádný výběr --');
+    $htmlSelect->clearItems();
     $htmlSelect->addItem('name', 'param');
     $htmlSelect->setItems([1 => 'a', 2 => 'b']);
     $htmlSelect->setItems([1 => 'a', 2 => 'b'], false);

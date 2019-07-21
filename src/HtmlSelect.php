@@ -96,10 +96,20 @@ class HtmlSelect extends Control implements ITemplatePath
             $items = array_combine($items, $items);
         }
 
+        $this->clearItems();
         // add items
         foreach ($items as $index => $item) {
             $this->addLink($item, $this->route, [$index]);
         }
+    }
+
+
+    /**
+     * Clear items.
+     */
+    public function clearItems()
+    {
+        $this->values = [];
     }
 
 
