@@ -12,4 +12,9 @@
         <a href="{plink DeleteSwitchFkId! $activeValue[$activeKey]['parameters'][0]}" n:confirm="$presenter->translator->translate('switch-fkid-delete-confirm', [$activeKey])">{_'switch-fkid-delete'}</a>
     </div>
 </div>
+
+<select class="form-element">
+    <option n:foreach="$values as $key => $item" {if $item['active']}selected{/if} value="{plink $item['route'] (expand) $item['parameters']}">{$key}</option>
+</select>
+
 *}
